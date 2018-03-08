@@ -11,6 +11,7 @@ let requestAns = new XMLHttpRequest();
 requestAns.open("GET", "answer.json", false);
 requestAns.send(null)
 let answerList = JSON.parse(requestAns.responseText);
+let doneQuestion = [];
 
 function onClickQuestion(doneQuestion, questionList, answerList, amountEx) {
     clearInterval(interval);
@@ -47,6 +48,7 @@ function nextQuestion(doneQuestion, questionList, answerList, amountEx) {
         while ($.inArray(randomChioce, doneQuestion) != -1) {
             randomChioce = Math.floor(Math.random() * Object.keys(questionList).length);
         }
+        doneQuestion.push(randomChioce);
         console.log(randomChioce);
         let numQuestion = Object.keys(questionList);
         let valueQuestion = Object.values(questionList);
@@ -66,7 +68,6 @@ function nextQuestion(doneQuestion, questionList, answerList, amountEx) {
                 let text = element.innerText || element.textContent;
                 console.log("This is text: ", text)
                 console.log("This is answer: ", valueAnswer[randomChioce])
-                doneQuestion.push(randomChioce);
                 if (text == valueAnswer[randomChioce]) {
                     totalScore++;
                 }
@@ -96,7 +97,7 @@ function fiveQuestion() {
     document.getElementById('question').style.display = "block";
     document.getElementById("startComponent").style.display = "none";
     let amountEx = 5;
-    let doneQuestion = [];
+    doneQuestion = [];
     totalScore = 0;
     amountDone = 0;
     // document.getElementById("score").innerHTML = "Your score: " + totalScore;
@@ -108,7 +109,7 @@ function tenQuestion() {
     document.getElementById('question').style.display = "block";
     document.getElementById("startComponent").style.display = "none";
     let amountEx = 10;
-    let doneQuestion = [];
+    doneQuestion = [];
     totalScore = 0;
     amountDone = 0;
     // document.getElementById("score").innerHTML = "Your score: " + totalScore;
@@ -120,7 +121,7 @@ function fiveteenQuestion() {
     document.getElementById('question').style.display = "block";
     document.getElementById("startComponent").style.display = "none";
     let amountEx = 15;
-    let doneQuestion = [];
+    doneQuestion = [];
     totalScore = 0;
     amountDone = 0;
     // document.getElementById("score").innerHTML = "Your score: " + totalScore;
