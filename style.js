@@ -14,7 +14,6 @@ let answerList = JSON.parse(requestAns.responseText);
 
 function onClickQuestion(doneQuestion, questionList, answerList, amountEx) {
     clearInterval(interval);
-    // startProgress(doneQuestion, questionList, answerList, amountEx);
     nextQuestion(doneQuestion, questionList, answerList, amountEx);
 }
 
@@ -22,22 +21,17 @@ function startProgress(doneQuestion, questionList, answerList, amountEx) {
     clearInterval(interval);
     amountDone++;
     let percentage = 100;
-    // nextQuestion(doneQuestion, questionList, answerList, amountEx);
     interval = setInterval(function() {
         var element = document.getElementById('tabTimer');
         document.getElementById("tabTimer").value = --percentage;
-        // console.log(percentage)
         if (percentage == 0) {
             nextQuestion(doneQuestion, questionList, answerList, amountEx);
-            // clearInterval(interval);
         }
     }, 600);
 }
 
 function nextQuestion(doneQuestion, questionList, answerList, amountEx) {
-    // startProgress(doneQuestion, questionList, answerList, amountEx);
     if (amountDone == amountEx) {
-        // onClickQuestion(doneQuestion, questionList, answerList, amountEx);
         clearInterval(interval);
         document.getElementById("tabTimer").style.display = "none";
         document.getElementById("startComponent").style.display = "block";
@@ -61,12 +55,10 @@ function nextQuestion(doneQuestion, questionList, answerList, amountEx) {
         let keyAnswer = Object.keys(answerList);
         let valueAnswer = Object.values(answerList);
         document.getElementById("question").innerHTML = getQuestion(valueQuestion, randomChioce);
-        // console.log("test: ", keyAnswer)
 
         for (let i = 0; i < getChoice(valueQuestion, randomChioce).length; i++) {
             let button = document.createElement('button');
             let nameId = "choice" + i;
-            // console.log(nameId);
             button.setAttribute("id", nameId);
 
             button.onclick = function() {
@@ -79,14 +71,12 @@ function nextQuestion(doneQuestion, questionList, answerList, amountEx) {
                     totalScore++;
                 }
                 nextQuestion(doneQuestion, questionList, answerList, amountEx);
-                // document.getElementById("score").innerHTML = "Your score: " + totalScore;
                 console.log(totalScore);
             };
 
             let br = document.createElement('br');
             button.innerHTML = getChoice(valueQuestion, randomChioce)[i];
             let div1 = document.getElementById(nameId);
-            // console.log(div1);
             document.getElementById('question').appendChild(br);
             document.getElementById('question').appendChild(button);
         }
@@ -111,7 +101,6 @@ function fiveQuestion() {
     amountDone = 0;
     // document.getElementById("score").innerHTML = "Your score: " + totalScore;
     nextQuestion(doneQuestion, questionList, answerList, amountEx);
-    // onClickQuestion(doneQuestion, questionList, answerList, amountEx);
 }
 
 function tenQuestion() {
@@ -124,7 +113,6 @@ function tenQuestion() {
     amountDone = 0;
     // document.getElementById("score").innerHTML = "Your score: " + totalScore;
     nextQuestion(doneQuestion, questionList, answerList, amountEx);
-    // onClickQuestion(doneQuestion, questionList, answerList, amountEx);
 }
 
 function fiveteenQuestion() {
@@ -137,5 +125,4 @@ function fiveteenQuestion() {
     amountDone = 0;
     // document.getElementById("score").innerHTML = "Your score: " + totalScore;
     nextQuestion(doneQuestion, questionList, answerList, amountEx);
-    // onClickQuestion(doneQuestion, questionList, answerList, amountEx);
 }
